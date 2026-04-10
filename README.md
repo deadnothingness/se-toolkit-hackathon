@@ -1,31 +1,42 @@
 # MediaFetch
 
-> Download audio (MP3) and video (MP4) from VK by URL with real-time progress tracking and AI chat assistant.
+> Download audio (MP3) and video (MP4) from **thousands of platforms** – YouTube, TikTok, VK, Rutube, Twitch, Vimeo, Facebook, X (Twitter), Reddit, and more – with real-time progress tracking and AI chat assistant.
 
 ## Demo
 
-![Screenshot](docs/screenshot.png)
+[Video Demonstration](https://docs.google.com/videos/d/1w1D_I9Xwp-NM1e8cayu9JTEflUBtp4-XMHWcqrxxl7Y/edit?scene=id.p#scene=id.p)
 
 ## Product Context
 
 ### End Users
 
-Students, educators, and anyone who needs to save online media (lectures, music, tutorials) for offline access without ads or third-party download sites.
+Students, educators, content creators, researchers, and anyone who needs to save online media (lectures, tutorials, music, streams) for offline access without ads or third-party download sites.
 
 ### Problem
 
-Downloading from VK requires navigating ad-heavy websites or using unreliable browser extensions. Users need a simple, clean interface to save media with one click.
+Downloading media from different platforms requires navigating ad-heavy websites, using unreliable browser extensions, or switching between multiple tools. Users need a single, clean interface that works across various sources.
 
 ### Solution
 
-A web-based service that accepts a VK video URL, lets users choose format (MP3/MP4) and quality (360p-1080p / 128k-320k), and downloads the file with real-time progress tracking. An AI chat assistant can parse natural language requests to auto-fill the form.
+A web-based service powered by `yt-dlp` – a powerful download engine that supports thousands of websites out of the box. Users can paste any video URL, choose format (MP3/MP4) and quality (360p-1080p / 128k-320k), and download the file with real-time progress tracking. An AI chat assistant can parse natural language requests to auto-fill the form.
+
+## Supported Platforms (Partial List)
+
+| Category | Platforms |
+|----------|-----------|
+| **Video Hosting** | YouTube, Vimeo, Dailymotion, Twitch, Rutube |
+| **Social Media** | VK, TikTok, Facebook, Instagram, X (Twitter), Reddit |
+| **Streaming** | Twitch clips, YouTube Live, VK Live |
+| **File Sharing** | Dropbox, Google Drive, Яндекс.Диск |
+| **… and thousands more** | Any site supported by yt-dlp |
+
+> **Note:** VK, Rutube, and Twitch work directly from the university network. YouTube, TikTok, and Instagram require a VPN or proxy on the VM due to network restrictions. The code supports all platforms – only network limitations apply.
 
 ## Features
 
 ### Implemented (v2)
 
-- ✅ Download MP3 (audio) from VK by URL
-- ✅ Download MP4 (video) from VK by URL
+- ✅ Download MP3/MP4 from any supported platform
 - ✅ Resolution-specific quality (360p, 720p, 1080p, best)
 - ✅ Audio bitrate selection (128k, 192k, 320k)
 - ✅ Real-time download progress bar (SSE)
@@ -36,16 +47,16 @@ A web-based service that accepts a VK video URL, lets users choose format (MP3/M
 
 ### Not Yet Implemented
 
-- ⬜ YouTube support (network restricted on university VMs)
 - ⬜ Batch downloads (multiple URLs at once)
 - ⬜ User authentication
 - ⬜ Download history per user
 - ⬜ File cleanup (automatic deletion of old files)
+- ⬜ Direct download execution from AI assistant (no manual click)
 
 ## Usage
 
 1. Open `http://localhost:8000` in your browser
-2. Paste a VK video URL (e.g., `https://vkvideo.ru/video-xxxxx_xxxxx`)
+2. Paste a video URL from any supported platform (e.g., `https://vkvideo.ru/video-xxxxx_xxxxx`, `https://youtube.com/watch?v=...`)
 3. Select format: **MP4 (Video)** or **MP3 (Audio)**
 4. Select quality:
    - For video: 360p, 720p, 1080p, Best
@@ -62,6 +73,8 @@ Type natural language requests in the chat widget, e.g.:
 
 The assistant will auto-fill the form – just click Start Download.
 
+**Future vision:** The assistant will soon start downloads directly, handle batch requests like "download this whole playlist", and suggest content based on your history.
+
 ## Deployment
 
 ### Requirements
@@ -70,7 +83,7 @@ The assistant will auto-fill the form – just click Start Download.
 - **CPU:** 2+ cores
 - **RAM:** 4+ GB
 - **Disk:** 10+ GB free space
-- **Network:** Access to VK (no VPN required)
+- **Network:** Access to target platforms (VPN may be required for some)
 
 ### Prerequisites on VM
 
